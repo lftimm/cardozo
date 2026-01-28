@@ -1,0 +1,38 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-o",
+      "main",
+      "matrix.cpp"
+    ],
+    "directory": "/home/tilt/p/cpp/cardozo",
+    "file": "/home/tilt/p/cpp/cardozo/matrix.cpp",
+    "output": "/home/tilt/p/cpp/cardozo/main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-o",
+      "main",
+      "vector.cpp"
+    ],
+    "directory": "/home/tilt/p/cpp/cardozo",
+    "file": "/home/tilt/p/cpp/cardozo/vector.cpp",
+    "output": "/home/tilt/p/cpp/cardozo/main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-o",
+      "main",
+      "main.cpp"
+    ],
+    "directory": "/home/tilt/p/cpp/cardozo",
+    "file": "/home/tilt/p/cpp/cardozo/main.cpp",
+    "output": "/home/tilt/p/cpp/cardozo/main"
+  }
+]
