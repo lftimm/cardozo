@@ -1,19 +1,19 @@
 #include <sstream>
-#include "algos.h"
 
 namespace cardozo 
 {
-    Vector multiply(const Matrix& a, const Vector& b) {
+    template<typename S>
+    Vector multiply(const Matrix<S>& a, const Vector& b) {
         int cols = a.getCols();
         int rows = a.getRows();
-        int len = b.getSize();
+        int len = b.getLength();
     
         if (cols != len)
         {
             std::stringstream ss{};
             ss << "multiply: matrix and vector are incompatible\n"
                << "M shape: (" << a.getRows() << ", " << a.getCols() << ")\n"
-               << "V len: (" << b.getSize() << ")\n"
+               << "V len: (" << b.getLength() << ")\n"
                ;
     
             throw std::out_of_range(ss.str());
@@ -32,24 +32,25 @@ namespace cardozo
     }
     
     
-    Vector linear_solve_CG(Vector x, Matrix& A, Vector& B, float eps) {
+    template<typename S>
+    Vector linear_solve_CG(Vector x, Matrix<S>& A, Vector& B, float eps) {
 
         Vector res = multiply(A,x) - B;
         Vector delta = res * -1;
     
         while (true) 
         {
-            if (res.length() <= eps) {
+            if (magnitude(res) <= eps) {
                 return x;
             }
     
             Vector D = multiply(A,delta);
-            float beta = res.dot(delta) * (-1/delta.dot(D));
+            float beta = dot(res,delta) * (-1/dot(delta,D));
             x += delta * beta;
             
     
             res = multiply(A,x) - B;
-            float chi = res.dot(D) * (1/delta.dot(D));
+            float chi = dot(res,D) * (1/dot(delta,D));
             delta = delta*chi - res;
         }
     }
