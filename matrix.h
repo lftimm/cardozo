@@ -1,7 +1,8 @@
 #pragma once
 
-#include "dense_cr.h"
 #include <vector>
+#include "dense_cr.h"
+#include "stack_cr.h"
 
 namespace cardozo 
 {
@@ -33,6 +34,12 @@ namespace cardozo
         template<typename>
         friend class Matrix;
     };
+
+    template<int i, int j>
+    using Transform = Matrix<StackCR<i,j>>;
+
 }
+
+
 
 #include "matrix.hpp"
