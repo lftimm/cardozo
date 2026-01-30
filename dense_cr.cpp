@@ -1,5 +1,4 @@
 #include "dense_cr.h"
-#include <algorithm>
 #include <memory>
 #include <stdexcept>
 
@@ -48,7 +47,7 @@ namespace cardozo
     DenseCR::DenseCR(const std::vector<std::vector<float>>& v) :
         mInternal(std::make_unique<float[]>(v.size()*v[0].size())),
         mRows(v.size()), 
-        mCols(v[0].capacity()),
+        mCols(v[0].size()),
         mSize(mRows*mCols) {
         
         for(int i = 0; i < mRows; i++) {
