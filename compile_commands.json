@@ -3,24 +3,40 @@
     "arguments": [
       "/usr/bin/g++",
       "-c",
-      "-o",
-      "main",
-      "vector.cpp"
+      "-std=c++20",
+      "sparse_cr.cpp"
     ],
     "directory": "/home/tilt/p/cpp/cardozo",
-    "file": "/home/tilt/p/cpp/cardozo/vector.cpp",
-    "output": "/home/tilt/p/cpp/cardozo/main"
+    "file": "/home/tilt/p/cpp/cardozo/sparse_cr.cpp"
   },
   {
     "arguments": [
       "/usr/bin/g++",
       "-c",
-      "-o",
-      "main",
+      "-std=c++20",
+      "dense_cr.cpp"
+    ],
+    "directory": "/home/tilt/p/cpp/cardozo",
+    "file": "/home/tilt/p/cpp/cardozo/dense_cr.cpp"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++20",
+      "vector.cpp"
+    ],
+    "directory": "/home/tilt/p/cpp/cardozo",
+    "file": "/home/tilt/p/cpp/cardozo/vector.cpp"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++20",
       "main.cpp"
     ],
     "directory": "/home/tilt/p/cpp/cardozo",
-    "file": "/home/tilt/p/cpp/cardozo/main.cpp",
-    "output": "/home/tilt/p/cpp/cardozo/main"
+    "file": "/home/tilt/p/cpp/cardozo/main.cpp"
   }
 ]

@@ -1,14 +1,14 @@
 #include <iostream>
 #include "algos.h"
 #include "matrix.h"
+#include "sparse_cr.h"
 #include "vector.h"
 
 int main() {
-    cardozo::Matrix a{2,2};
-    a(0,0) = 4;
-    a(0,1) = 1;
-    a(1,0) = 1;
-    a(1,1) = 3;
+    cardozo::Matrix<cardozo::SparseCR> a{{
+        {1,0},
+        {0,1}
+    }};
 
     cardozo::Vector v{2};
     v(0) = 1;

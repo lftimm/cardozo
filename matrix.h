@@ -1,6 +1,7 @@
 #pragma once
 
-#include "densecr.h"
+#include "dense_cr.h"
+#include <vector>
 
 namespace cardozo 
 {
@@ -14,7 +15,13 @@ namespace cardozo
         int getCols() const { return mGuts.getCols(); }
         int getSize() const { return mGuts.getSize(); }
         
-        Matrix(int rows,int cols) : mGuts(rows, cols) {} ;
+        Matrix(int rows,int cols) : mGuts(rows, cols) {}
+        Matrix(const Storage& s ) : mGuts(s) {}
+        Matrix(const std::vector<std::vector<float>>& m) : mGuts(m) {}
+
+        template<typename S>
+        Matrix(const Matrix<S>& s) : mGuts(s.mGuts) {}
+
         float at(int i, int j) const { return mGuts.at(i,j); }
 
         float operator()(int i, int j) const { return mGuts(i,j); }
@@ -22,6 +29,9 @@ namespace cardozo
 
         template<typename S>
         friend std::ostream& operator<<(std::ostream& out, const Matrix<S>& m);
+
+        template<typename>
+        friend class Matrix;
     };
 }
 

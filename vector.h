@@ -1,6 +1,6 @@
 #pragma once
 
-#include "densecr.h"
+#include "dense_cr.h"
 
 namespace cardozo 
 {
@@ -38,7 +38,7 @@ namespace cardozo
     Vector operator*(const Vector& a, float s);
     Vector operator*(float s, const Vector& a);
 
-    Vector operator/(const Vector& a, const Vector& b);
+    Vector operator/(const Vector& a, float s);
 
 
     float dot(const Vector& a, const Vector& b);

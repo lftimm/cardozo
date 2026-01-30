@@ -1,4 +1,5 @@
-#include "densecr.h"
+#include "dense_cr.h"
+#include <algorithm>
 #include <memory>
 #include <stdexcept>
 
@@ -44,6 +45,20 @@ namespace cardozo
             o.mSize = 0;
     }
 
+    DenseCR::DenseCR(const std::vector<std::vector<float>>& v) :
+        mInternal(std::make_unique<float[]>(v.size()*v[0].size())),
+        mRows(v.size()), 
+        mCols(v[0].capacity()),
+        mSize(mRows*mCols) {
+        
+        for(int i = 0; i < mRows; i++) {
+            for(int j = 0; j < mCols; j++) {
+                mInternal[i*mCols + j] = v[i][j];
+            }
+        }
+
+    }
+
     DenseCR& DenseCR::operator=(const DenseCR& c) {
         mInternal = std::make_unique<float[]>(c.mSize);
 
@@ -52,6 +67,10 @@ namespace cardozo
                 mInternal[i*mCols + j] = c.mInternal[i*mCols + j];
             }
         }
+
+        mRows = c.mRows;
+        mCols = c.mCols;
+        mSize = c.mSize;
 
         return *this;
     }

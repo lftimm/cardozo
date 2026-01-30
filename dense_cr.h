@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <vector>
 
 namespace cardozo
 {
@@ -18,6 +19,8 @@ namespace cardozo
 
         DenseCR(int,int);
         explicit DenseCR(int);
+        DenseCR(const std::vector<std::vector<float>>&);
+
 
         DenseCR(const DenseCR&);
         DenseCR(DenseCR&&);
