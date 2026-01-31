@@ -35,6 +35,9 @@ namespace cardozo
         template<typename>
         friend class Matrix;
     };
+
+    template<int i, int j>
+    using Transform = Matrix<StackCR<i,j>>;
 }
 
-#include "../src/matrix.hpp"
+#include "matrix.hpp"

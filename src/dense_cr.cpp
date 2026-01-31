@@ -1,4 +1,4 @@
-#include "../headers/dense_cr.h"
+#include "dense_cr.h"
 #include <initializer_list>
 #include <memory>
 #include <stdexcept>

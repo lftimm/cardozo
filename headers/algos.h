@@ -12,4 +12,4 @@ namespace cardozo::algos
     Vector congruentGradient(Vector x, Matrix<S>& A, Vector& B, float eps = 1e-5);
 }
 
-#include "../src/algos.hpp"
+#include "algos.hpp"

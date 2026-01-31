@@ -1,6 +1,6 @@
 #pragma once
 #include <sstream>
-#include "../headers/algos.h"
+#include "algos.h"
 
 namespace cardozo::algos 
 {

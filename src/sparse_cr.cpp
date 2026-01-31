@@ -1,4 +1,4 @@
-#include "../headers/sparse_cr.h"
+#include "sparse_cr.h"
 #include <algorithm>
 #include <initializer_list>
 #include <numeric>
