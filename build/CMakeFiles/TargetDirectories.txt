@@ -1,3 +1,0 @@
-/home/tilt/p/cpp/cardozo/build/CMakeFiles/cardozo.dir
-/home/tilt/p/cpp/cardozo/build/CMakeFiles/edit_cache.dir
-/home/tilt/p/cpp/cardozo/build/CMakeFiles/rebuild_cache.dir

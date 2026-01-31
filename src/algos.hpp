@@ -1,6 +1,8 @@
+#pragma once
 #include <sstream>
+#include "../headers/algos.h"
 
-namespace cardozo 
+namespace cardozo::algos 
 {
     template<typename S>
     Vector multiply(const Matrix<S>& a, const Vector& b) {
@@ -33,7 +35,7 @@ namespace cardozo
     
     
     template<typename S>
-    Vector linear_solve_CG(Vector x, Matrix<S>& A, Vector& B, float eps) {
+    Vector congruentGradient(Vector x, Matrix<S>& A, Vector& B, float eps) {
 
         Vector res = multiply(A,x) - B;
         Vector delta = res * -1;

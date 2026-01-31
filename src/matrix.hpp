@@ -1,9 +1,11 @@
-#include <iomanip>
-#include <cassert>
+#pragma once
+#include "../headers/matrix.h"
 
-
-namespace cardozo 
+namespace cardozo
 {
+    template<int i, int j>
+    using Transform = Matrix<StackCR<i,j>>;
+
     template<typename S>
     Matrix<S> operator+(const Matrix<S>& m, const Matrix<S>& other) {
 
@@ -88,6 +90,4 @@ namespace cardozo
 
         return out;
     }
-
 }
-

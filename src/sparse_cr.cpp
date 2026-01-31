@@ -1,5 +1,5 @@
+#include "../headers/sparse_cr.h"
 #include <stdexcept>
-#include "sparse_cr.h"
 
 namespace cardozo 
 {
@@ -12,8 +12,8 @@ namespace cardozo
     }
 
     SparseCR::SparseCR(const DenseCR& m) :
-        mCols(m.getCols()),
         mRows(m.getRows()),
+        mCols(m.getCols()),
         mSize(m.getSize()) {
 
         mRowPtr.push_back(0);
@@ -30,8 +30,8 @@ namespace cardozo
     }
 
     SparseCR::SparseCR(const std::vector<std::vector<float>>& m) :
-        mCols(m[0].size()),
         mRows(m.size()),
+        mCols(m[0].size()),
         mSize(mCols*mRows) {
 
         mRowPtr.push_back(0);

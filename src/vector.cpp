@@ -3,7 +3,7 @@
 #include <iostream>
 #include <cassert>
 
-#include "vector.h"
+#include "../headers/vector.h"
 
 namespace cardozo
 {
