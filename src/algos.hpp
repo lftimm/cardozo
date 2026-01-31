@@ -33,7 +33,6 @@ namespace cardozo::algos
         return res;
     }
     
-    
     template<typename S>
     Vector congruentGradient(Vector x, Matrix<S>& A, Vector& B, float eps) {
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <initializer_list>
 #include <memory>
 #include <vector>
 
@@ -19,7 +20,7 @@ namespace cardozo
 
         DenseCR(int,int);
         explicit DenseCR(int);
-        DenseCR(const std::vector<std::vector<float>>&);
+        DenseCR(const std::initializer_list<std::initializer_list<float>>&);
 
 
         DenseCR(const DenseCR&);

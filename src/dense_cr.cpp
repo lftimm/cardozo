@@ -1,4 +1,5 @@
 #include "../headers/dense_cr.h"
+#include <initializer_list>
 #include <memory>
 #include <stdexcept>
 
@@ -44,18 +45,21 @@ namespace cardozo
             o.mSize = 0;
     }
 
-    DenseCR::DenseCR(const std::vector<std::vector<float>>& v) :
-        mInternal(std::make_unique<float[]>(v.size()*v[0].size())),
+    DenseCR::DenseCR(const std::initializer_list<std::initializer_list<float>>& v) :
+        mInternal(std::make_unique<float[]>(v.size() == 0 ? 0 : v.begin()->size())),
         mRows(v.size()), 
-        mCols(v[0].size()),
+        mCols(v.size() == 0 ? 0 : v.begin()->size()),
         mSize(mRows*mCols) {
         
-        for(int i = 0; i < mRows; i++) {
-            for(int j = 0; j < mCols; j++) {
-                mInternal[i*mCols + j] = v[i][j];
-            }
-        }
+        int idx{};
+        for(const auto&  r : v)
+        {
+            if(r.size() != mCols)
+                throw std::runtime_error("Passed an irregular matrix, be sure to pass a rectangular matrix");
 
+            for(const auto c : r)
+                mInternal[idx++] = c;
+        }
     }
 
     DenseCR& DenseCR::operator=(const DenseCR& c) {

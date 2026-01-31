@@ -1,4 +1,5 @@
 #pragma once
+#include "sparse_cr.h"
 #include "matrix.h"
 #include "vector.h"
 

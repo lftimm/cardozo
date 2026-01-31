@@ -16,8 +16,7 @@ namespace cardozo
             int mSize;
 
         public:
-            SparseCR(const DenseCR& m);
-            SparseCR(const std::vector<std::vector<float>>& m);
+            SparseCR(const std::initializer_list<std::initializer_list<float>>&);
 
             int getRows() const { return mRows; }
             int getCols() const { return mCols; }
