@@ -1,0 +1,2 @@
+/usr/bin/ar qc libcardozo.a CMakeFiles/cardozo.dir/src/dense_cr.cpp.o CMakeFiles/cardozo.dir/src/sparse_cr.cpp.o CMakeFiles/cardozo.dir/src/vector.cpp.o
+/usr/bin/ranlib libcardozo.a
