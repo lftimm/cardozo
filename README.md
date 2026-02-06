@@ -6,8 +6,7 @@ This library is going to be used for my Bachelor's Thesis [Multicore and GPU Acc
 
 ## Future goals
 Adding compilation options targeting OpenMP and Nvidia CUDA.
-More Matrix Storage Backends, looking into adding stack allocated matrices.
-More solvers and manners of multiplying.
+More solvers and algorithms.
 A matrix dispatcher, able to deploy the best backend based on the characterstics of the matrix.
 Helper functions.
 
@@ -34,7 +33,7 @@ int main() {
     };
 
     cardozo::Matrix<cardozo::SparseCR> c {a}; // Matrix using the alternative backend (Compressed Sparse Row)
-    cardozo::Matrix d{ // Matrix using CSR as backend and initialized with initializer list
+    cardozo::Matrix d { // Matrix using CSR as backend and initialized with initializer list
         {1,0},
         {0,1}
     };
@@ -48,7 +47,7 @@ int main() {
     x(0) = 0;
     x(1) = 0;
 
-    std::cout << cardozo::conugateGradient(x,a,v)<< "\n"; // Solving the linear system with the Conjugate Gradient Method
+    std::cout << cardozo::conjugateGradient(x,a,v)<< "\n"; // Solving the linear system with the Conjugate Gradient Method
 
     std::cout << v+x << "\n"; // Sum of vectors 
 ```
