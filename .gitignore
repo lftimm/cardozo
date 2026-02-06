@@ -1,4 +1,6 @@
 *.cache
 build/*
+tests/benchmark
+tests/compile_commands.json
 compile_commands.json
 

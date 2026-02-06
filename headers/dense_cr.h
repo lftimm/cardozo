@@ -2,7 +2,6 @@
 
 #include <initializer_list>
 #include <memory>
-#include <vector>
 
 namespace cardozo
 {
@@ -34,5 +33,6 @@ namespace cardozo
         float at(int,int) const;
         float& operator()(int i, int j);
         float operator()(int i, int j) const;
+        
     };
 }

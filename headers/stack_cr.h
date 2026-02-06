@@ -1,7 +1,8 @@
 #pragma once
 
 #include <array>
-#include <vector>
+#include <cstddef>
+#include <initializer_list>
 #include <cassert>
 
 namespace cardozo 
@@ -21,7 +22,7 @@ namespace cardozo
 
         StackCR(int,int) = delete;
         explicit StackCR(int) = delete;
-        StackCR(const std::vector<std::vector<float>>&);
+        StackCR(const std::initializer_list<std::initializer_list<float>>&);
         StackCR(const StackCR&) = default;
         StackCR(StackCR&&) = default;
         StackCR& operator=(const StackCR&) = default;
@@ -31,18 +32,25 @@ namespace cardozo
         float at(int a,int b) const { return mInternal.at(a*mCols+b); }
         float& operator()(int a, int b) { return mInternal[a*mCols+b]; }
         float operator()(int a, int b) const { return mInternal[a*mCols+b]; }
+
     };
 
     template<std::size_t i, std::size_t j>
-    StackCR<i,j>::StackCR(const std::vector<std::vector<float>>& m) {
+    StackCR<i,j>::StackCR(const std::initializer_list<std::initializer_list<float>>& m) {
 
-        assert(m.size() == i && m[0].size() == j && "Matrices must match size");
+        assert(m.size() == i && m.begin()->size() == j && "Matrices must match size");
 
-        for(int a = 0; a < mRows; a++) {
-            for(int b = 0; b < mCols; b++) {
-                mInternal[a*mCols+b] = m[a][b];
+        std::size_t a{};
+        std::size_t b{};
+        for (const auto& r : m)
+        {
+            b = 0;
+            for (const auto c : r )
+            {
+                mInternal[a*mCols+b] = c;
+                b++;
             }
+            a++;
         }
-
     }
 }

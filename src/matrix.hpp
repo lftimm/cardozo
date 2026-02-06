@@ -1,9 +1,11 @@
 #pragma once
+#include <iomanip>
+
 #include "matrix.h"
+#include "sparse_cr.h"
 
 namespace cardozo
 {
-
     template<typename S>
     Matrix<S> operator+(const Matrix<S>& m, const Matrix<S>& other) {
 
@@ -45,6 +47,74 @@ namespace cardozo
         }
 
         return r;
+    }
+
+    template<typename S>
+    Vector multiply(const Matrix<S>& a, const Vector& b) {
+        int cols = a.getCols();
+        int rows = a.getRows();
+        int len = b.getLength();
+    
+        if (cols != len)
+        {
+            std::stringstream ss{};
+            ss << "multiply: matrix and vector are incompatible\n"
+               << "M shape: (" << a.getRows() << ", " << a.getCols() << ")\n"
+               << "V len: (" << b.getLength() << ")\n"
+               ;
+    
+            throw std::out_of_range(ss.str());
+        }
+    
+        Vector res{rows};
+        for (int i = 0 ; i < rows ; i++) {
+            float acc = 0;
+            for (int j = 0 ; j < cols ; j++) {
+                acc += a(i,j) * b(j);
+            }
+            res(i) = acc;
+        }
+    
+        return res;
+    }
+    
+    template<>
+    inline Vector multiply(const Matrix<SparseCR>& a, const Vector& b) {
+        const SparseCR& storage = a.getStorage();
+
+        const std::vector<float>& data = storage.getData();
+        const std::vector<int>& colIdx = storage.getColIdx();
+        const std::vector<int>& rowPtr = storage.getRowPtr();
+
+        int cols = storage.getCols();
+        int rows = storage.getRows();
+        int len = b.getLength();
+    
+        if (cols != len)
+        {
+            std::stringstream ss{};
+            ss << "multiply: matrix and vector are incompatible\n"
+               << "M shape: (" << a.getRows() << ", " << a.getCols() << ")\n"
+               << "V len: (" << b.getLength() << ")\n"
+               ;
+    
+            throw std::out_of_range(ss.str());
+        }
+    
+        Vector res{rows};
+
+        for(int i = 0; i < rows; i++)
+        {
+            int nz_start = rowPtr[i];
+            int nz_end = rowPtr[i+1];
+
+            for(int j = nz_start; j < nz_end; j++)
+            {
+                res(i) += data[j]*b(colIdx[j]);
+            }
+        }
+
+        return res;
     }
 
     template<typename S>

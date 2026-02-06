@@ -113,7 +113,7 @@ namespace cardozo
     float magnitude(const Vector& v) {
         float acc{};
         for(int i = 0; i < v.getLength(); i++)  {
-            acc += pow(v(i),2);
+            acc += v(i)*v(i);
         }
         return std::sqrt(acc);
     }
@@ -121,7 +121,7 @@ namespace cardozo
     Vector normalize(const Vector& v) {
         float mag = magnitude(v);
         Vector r{v.getLength()};
-        for(int i = 0; i < v.getLength(); i++)  {
+        for(int i = 0; i < v.getLength(); i++) {
             r(i) = v(i) / mag;
         }
 

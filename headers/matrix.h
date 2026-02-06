@@ -1,9 +1,10 @@
 #pragma once
-#include <vector>
-#include <iomanip>
+#include <initializer_list>
+#include <sys/types.h>
 
 #include "dense_cr.h"
 #include "stack_cr.h"
+#include "vector.h"
 
 namespace cardozo 
 {
@@ -16,10 +17,11 @@ namespace cardozo
         int getRows() const { return mGuts.getRows(); }
         int getCols() const { return mGuts.getCols(); }
         int getSize() const { return mGuts.getSize(); }
+        const Storage& getStorage() const { return mGuts; }
         
         Matrix(int rows,int cols) : mGuts(rows, cols) {}
         Matrix(const Storage& s ) : mGuts(s) {}
-        Matrix(const std::vector<std::vector<float>>& m) : mGuts(m) {}
+        Matrix(const std::initializer_list<std::initializer_list<float>>& m) : mGuts(m) {}
 
         template<typename S>
         Matrix(const Matrix<S>& s) : mGuts(s.mGuts) {}

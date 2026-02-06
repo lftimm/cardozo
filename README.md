@@ -19,10 +19,7 @@ Helper functions.
 ## Examples
 
 ```cpp
-#include "algos.h"
-#include "matrix.h"
-#include "sparse_cr.h"
-#include "vector.h"
+#include <cardozo>
 
 int main() {
     cardozo::Matrix a{2,2}; // Matrix of size 2x2 using the default backend (Dense Matrix)
@@ -31,13 +28,13 @@ int main() {
     a(1,0) = 0;
     a(0,1) = 1;
 
-    cardozo::Matrix<cardozo::DenseCR> b{ // Matrix using the default backend, initialized with an Array of Arrays
+    cardozo::Matrix<cardozo::DenseCR> b{ // Matrix using the default backend, initialized with an initializer list
         {1,0},
         {0,1}
     };
 
     cardozo::Matrix<cardozo::SparseCR> c {a}; // Matrix using the alternative backend (Compressed Sparse Row)
-    cardozo::Matrix d{ // Matrix using CSR as backend and initialized from an AoA
+    cardozo::Matrix d{ // Matrix using CSR as backend and initialized with initializer list
         {1,0},
         {0,1}
     };
@@ -51,21 +48,9 @@ int main() {
     x(0) = 0;
     x(1) = 0;
 
-    std::cout << cardozo::linear_solve_CG(x,a,v)<< "\n"; // Solving the linear system with the Conjugate Gradient Method
+    std::cout << cardozo::conugateGradient(x,a,v)<< "\n"; // Solving the linear system with the Conjugate Gradient Method
 
     std::cout << v+x << "\n"; // Sum of vectors 
-    /*
-    Other available operations:
-
-    Vector - Vector
-    Vector * Vector
-    dot(Vector, Vector)
-    Vector * float 
-    scalar * Vector
-    Vector / float
-    multiply(Matrix<S>, Vector)
-
-    */
 ```
 
 ### Why cardozo?
