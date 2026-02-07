@@ -7,7 +7,7 @@
 namespace cardozo::algos 
 {
     template<typename S>
-    Vector congruentGradient(Vector x, Matrix<S>& A, Vector& B, float eps) {
+    Vector conjugateGradient(Vector x, Matrix<S>& A, Vector& B, float eps) {
 
         const int max_iteration_limit{2*A.getRows()};
         Vector res = multiply(A,x) - B;
