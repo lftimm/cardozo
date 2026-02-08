@@ -15,7 +15,8 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(
     ${PROJECT_NAME}
-    algorithms_test.cpp
+    algos_test.cpp
+    vector_test.cpp
 )
 
 target_link_libraries(

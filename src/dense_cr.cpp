@@ -54,11 +54,6 @@ namespace cardozo
         int idx{};
         for(const auto&  r : v)
         {
-            /*
-            if(r.size() != mCols)
-                throw std::runtime_error("Passed an irregular matrix, be sure to pass a rectangular matrix");
-            */
-
             for(const auto c : r)
                 mInternal[idx++] = c;
         }
