@@ -51,6 +51,11 @@ int main() {
 
     std::cout << v+x << "\n"; // Sum of vectors 
 ```
+### Sources
+https://en.wikipedia.org/wiki/Sparse_matrix
+https://en.wikipedia.org/wiki/Conjugate_gradient_method
+https://indrag49.github.io/Numerical-Optimization/conjugate-gradient-methods-1.html#linear-conjugate-gradient-algorithm
+
 
 ### Why cardozo?
 https://pt.wikipedia.org/wiki/Joaquim_Cardozo 
