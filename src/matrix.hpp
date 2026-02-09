@@ -1,9 +1,9 @@
 #pragma once
 #include <iomanip>
+#include <vector>
 
 #include "matrix.h"
 #include "sparse_cr.h"
-#include "vector.h"
 
 namespace cardozo
 {
@@ -30,6 +30,29 @@ namespace cardozo
     }
 
     template<typename S>
+    Matrix<S> operator-(const Matrix<S>& m, const Matrix<S>& other)
+    {
+        assert(
+            m.getRows() == other.getRows() && 
+            m.getCols() == other.getCols() &&
+            "Matrices do not match size"
+        );
+
+        const int rows = other.getRows();
+        const int cols = other.getCols();
+
+        Matrix r{rows,cols};
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                r(i,j) = m(i,j) - other(i,j);
+            }
+        }
+
+        return r;
+    }
+
+
+    template<typename S>
     Matrix<S> operator*(const Matrix<S>& m, float s) {
         assert(
             m.getRows() == m.getRows() && 
@@ -49,6 +72,18 @@ namespace cardozo
 
         return r;
     }
+
+    template<typename S>
+    Matrix<S> operator-(const Matrix<S>& m) { return -1*m; }
+
+    template<typename S>
+    Matrix<S> operator+(const Matrix<S>& m) { return m; }
+
+    template<typename S>
+    Matrix<S> operator*(float s , const Matrix<S>& m) { return m*s; }
+
+    template<typename S>
+    Matrix<S> operator/(const Matrix<S>& m, float s) { return m*(1/s);}
 
     template<typename S>
     Vector multiply(const Matrix<S>& a, const Vector& b) {
@@ -118,11 +153,6 @@ namespace cardozo
         return res;
     }
 
-    template<typename S>
-    Matrix<S> operator*(float s , const Matrix<S>& m) { return m*s; }
-
-    template<typename S>
-    Matrix<S> operator/(const Matrix<S>& m, float s) { return m*(1/s);}
 
     template<typename S>
     std::ostream& operator<<(std::ostream& out, const Matrix<S>& m) {
