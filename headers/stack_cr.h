@@ -5,29 +5,30 @@
 #include <initializer_list>
 #include <cassert>
 
+#include "dense_cr.h"
+
 namespace cardozo 
 {
+
     template<std::size_t i, std::size_t j>
     class StackCR {
     private:
-        std::array<float, i*j> mInternal{};
-        int mRows{static_cast<int>(i)};
-        int mCols{static_cast<int>(j)};
-        int mSize{static_cast<int>(i*j)};
+        std::array<float, i*j> mInternal;
+        int mRows;
+        int mCols;
+        int mSize;
 
     public:
         int getRows() const { return mRows; }
         int getCols() const { return mCols; }
         int getSize() const { return mSize; }
+        const std::array<float, i*j>& getInternal() { return mInternal; }
+
+        StackCR(const std::initializer_list<std::initializer_list<float>>&);
+        StackCR(const DenseCR&);
 
         StackCR(int,int) = delete;
         explicit StackCR(int) = delete;
-        StackCR(const std::initializer_list<std::initializer_list<float>>&);
-        StackCR(const StackCR&) = default;
-        StackCR(StackCR&&) = default;
-        StackCR& operator=(const StackCR&) = default;
-        StackCR& operator=(StackCR&&) = default;
-        ~StackCR() = default;
 
         float at(int a,int b) const { return mInternal.at(a*mCols+b); }
         float& operator()(int a, int b) { return mInternal[a*mCols+b]; }
@@ -35,22 +36,6 @@ namespace cardozo
 
     };
 
-    template<std::size_t i, std::size_t j>
-    StackCR<i,j>::StackCR(const std::initializer_list<std::initializer_list<float>>& m) {
-
-        assert(m.size() == i && m.begin()->size() == j && "Matrices must match size");
-
-        std::size_t a{};
-        std::size_t b{};
-        for (const auto& r : m)
-        {
-            b = 0;
-            for (const auto c : r )
-            {
-                mInternal[a*mCols+b] = c;
-                b++;
-            }
-            a++;
-        }
-    }
 }
+
+#include "stack_cr.hpp"

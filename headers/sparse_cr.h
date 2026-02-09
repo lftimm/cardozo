@@ -16,6 +16,10 @@ namespace cardozo
             int mSize;
 
         public:
+
+            explicit SparseCR(int) = delete;
+            SparseCR(int,int) = delete;
+
             SparseCR(const std::initializer_list<std::initializer_list<float>>&);
             SparseCR(const DenseCR& m);
 

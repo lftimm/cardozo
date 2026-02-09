@@ -5,6 +5,7 @@ project(cardozo)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+file(GLOB CARDOZO_HEADERS "headers/*.h" "src/*.hpp")
 
 # This adds the cardozo.h file, teaches cmake how to get it and what it depends on
 add_custom_command(
@@ -12,7 +13,7 @@ add_custom_command(
     COMMAND python "${CMAKE_CURRENT_LIST_DIR}/combine.py" && 
             mv "${CMAKE_CURRENT_LIST_DIR}/cardozo.h" "${CMAKE_CURRENT_BINARY_DIR}"
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
-    DEPENDS combine.py
+    DEPENDS ${CARDOZO_HEADERS} "${CMAKE_CURRENT_LIST_DIR}/combine.py"
     COMMENT "Merging all headers into a single file"
 )
 

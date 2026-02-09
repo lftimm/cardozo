@@ -1,6 +1,5 @@
 #pragma once
 
-#include <initializer_list>
 #include <memory>
 
 namespace cardozo
@@ -16,6 +15,7 @@ namespace cardozo
         int getRows() const { return mRows; }
         int getCols() const { return mCols; }
         int getSize() const { return mSize; }
+        const float* getInternal() const { return mInternal.get(); }
 
         DenseCR(int,int);
         explicit DenseCR(int);

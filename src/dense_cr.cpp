@@ -60,6 +60,10 @@ namespace cardozo
     }
 
     DenseCR& DenseCR::operator=(const DenseCR& c) {
+
+        if(this == &c)
+            return *this;
+
         mInternal = std::make_unique<float[]>(c.mSize);
 
         for(int i = 0; i < mRows; i++) {
@@ -76,6 +80,10 @@ namespace cardozo
     }
 
     DenseCR& DenseCR::operator=(DenseCR&& o) {
+
+        if(this == &o)
+            return *this;
+
         mInternal = std::move(o.mInternal);
         mRows = o.mRows;
         mCols = o.mCols;

@@ -1,6 +1,7 @@
 #include <fstream>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 
 #include "mt_mdata.h"
@@ -42,10 +43,7 @@ namespace cardozo::utils {
     {
         std::ifstream matrixFile{file_path};
         if(!matrixFile)
-        {
-            std::cerr << "Error reading file: " << file_path << std::endl;
-            std::exit(1);
-        }
+            throw std::runtime_error("Error Reading File");
 
         std::string s{};
         std::size_t rowNumber{};
@@ -69,7 +67,7 @@ namespace cardozo::utils {
         }
 
         Matrix m{static_cast<int>(rowNumber),static_cast<int>(colNumber)};
-        while(std::getline(matrixFile,s,'\n'))
+        while(std::getline(matrixFile, s,'\n'))
         {
             std::stringstream lineStream{s};
             int i{};
@@ -79,8 +77,9 @@ namespace cardozo::utils {
             if(lineStream >> i >> j >> value) {
                 i--; j--;
             } else {
-                std::cerr << "Failed to parse line " << lineCount << ": " << s <<"\n";
-                std::exit(1);    
+                std::stringstream errorStream{};
+                errorStream << "Failed to parse line " << lineCount << ": " << s <<"\n";
+                throw std::runtime_error(errorStream.str());    
             }
 
             m(i,j) = value;
