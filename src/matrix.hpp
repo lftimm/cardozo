@@ -3,6 +3,7 @@
 
 #include "matrix.h"
 #include "sparse_cr.h"
+#include "vector.h"
 
 namespace cardozo
 {

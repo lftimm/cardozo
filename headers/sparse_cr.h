@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdexcept>
 #include <vector>
 #include "dense_cr.h"
 
@@ -31,7 +32,7 @@ namespace cardozo
             const std::vector<int>& getColIdx() const { return mColIdx; }
             const std::vector<int>& getRowPtr() const { return mRowPtr; }
 
-            float& operator()(int,int) = delete;
+            float& operator()(int,int) { throw std::logic_error("SparseCR Shouldn't be modified."); };
             float operator()(int,int) const;
             float at(int,int) const;
             

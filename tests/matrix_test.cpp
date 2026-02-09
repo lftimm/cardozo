@@ -1,64 +1,70 @@
 #include <gtest/gtest.h>
 
 #include <cardozo.h>
+#include <stdexcept>
 using namespace cardozo;
-
-
-#define EXPECT_MATRIX_EQ(m1, m2) \
-    ASSERT_EQ(m1.getCols(),m2.getCols()) << \
-        "Matrices don't match in column number: " << \
-        m1.getCols() << "vs" << m2.getCols(); \
-    ASSERT_EQ(m1.getRows(),m2.getRows()) << \
-        "Matrices don't match in row number: " << \
-        m1.getRows() << "vs" << m2.getRows(); \
-    for(int i = 0; i < m1.getRows(); i++) { \
-        for(int j = 0; j < m1.getCols(); j++) {\
-            EXPECT_EQ(m1.at(i,j),m2.at(i,j));\
-        }\
-    }\
 
 const std::string filePath{"../../tests/matrix_samples/gr_900_900_crg.mm"};
 constexpr int kMatrixSize{900};
 
-class MatrixTest : public testing:: Test {
-protected:
+static const Matrix<DenseCR> ref = utils::from_mmt_file(filePath);
 
+template<typename T>
+class MatrixTest : public testing::Test {
+public:
 
-    Matrix<DenseCR> denseMT;
-    Matrix<SparseCR> csrMT;
-    Transform<kMatrixSize, kMatrixSize> stackMT;
+    const Matrix<T> kmt;
+    Matrix<T> mt;
 
     MatrixTest() :
-        denseMT(utils::from_mmt_file(filePath)),
-        csrMT(denseMT),
-        stackMT(denseMT) {
-
+        mt(utils::from_mmt_file(filePath)), 
+        kmt(utils::from_mmt_file(filePath)) {
+        
     }
 
 };
 
-TEST_F(MatrixTest, CAN_READ_FROM_FILE)
-{
-    Matrix mt{utils::from_mmt_file(filePath)};
-    ASSERT_EQ(mt.getCols(), kMatrixSize) << "Matrix column number: " << mt.getCols() << "\n";
-    ASSERT_EQ(mt.getRows(), kMatrixSize) << "Matrix row number: " << mt.getRows() << "\n";
-}
+using StorageTypes = ::testing::Types<SparseCR,StackCR<kMatrixSize, kMatrixSize>>;
+TYPED_TEST_SUITE(MatrixTest, StorageTypes);
 
+TYPED_TEST(MatrixTest, CONST_ACCESS_OPERATOR) {
 
-TEST_F(MatrixTest, DENSE_STACK_ARE_EQUAL) {
-    
-    EXPECT_MATRIX_EQ(denseMT, stackMT);
-
-}
-
-TEST_F(MatrixTest, DENSE_CSR_ARE_EQUAL) {
-    
-    EXPECT_MATRIX_EQ(denseMT, csrMT);
+    for(int i = 0; i < this->kmt.getRows(); i++)
+    {
+        for(int j = 0; j < this->kmt.getCols(); j++)
+        {
+            EXPECT_EQ(ref(i,j),this->kmt(i,j)) << "Mismatch at (" << i << ", " << j << ")";
+        }
+    }
 
 }
 
-TEST_F(MatrixTest, STACK_CSR_ARE_EQUAL) {
-    
-    EXPECT_MATRIX_EQ(csrMT, stackMT);
+TYPED_TEST(MatrixTest, CALLING_AT_OOB_BRINGS_EXCEPTION) {
+
+    EXPECT_THROW({
+        this->kmt.at(kMatrixSize,kMatrixSize);
+    }, std::out_of_range);
 
 }
+
+TYPED_TEST(MatrixTest, REF_ACCESS_OPERATOR) {
+
+    if (std::is_same_v<TypeParam, SparseCR>) {
+        GTEST_SKIP() << "SparseCR is readonly";
+    }
+
+    float val = 300;
+    int pos = kMatrixSize/2;
+
+    this->mt(pos,pos) = val;
+
+    EXPECT_EQ(this->mt(pos, pos), val);
+}
+
+
+
+TEST(MatrixTest, CAN_READ_FROM_FILE) {
+    ASSERT_EQ(ref.getCols(), kMatrixSize) << "Matrix column number: " << ref.getCols() << "\n";
+    ASSERT_EQ(ref.getRows(), kMatrixSize) << "Matrix row number: " << ref.getRows() << "\n";
+}
+
