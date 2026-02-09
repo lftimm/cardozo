@@ -81,7 +81,7 @@ TEST_F(VectorTest, VECTOR_MOVE_CONSTRUCTOR) {
 
     EXPECT_EQ(v1.getLength(), 0) << "Moved Length wasn't set to 0";
 
-    EXPECT_DEATH({v1(0);}, "");
+    EXPECT_EQ(v1.getData(), nullptr) << "Original vector wasn't unset";
 }
 
 TEST_F(VectorTest, VECTOR_SUM_ASSIGNMENT) {
