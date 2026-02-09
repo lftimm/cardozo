@@ -19,6 +19,8 @@ namespace cardozo
         Vector& operator=(Vector&&) = default;
 
 
+        const float* getData() const { return mGuts.getInternal();};
+
         float at(int l) { return mGuts.at(l,0); }
 
         float& operator()(int i) { return mGuts(i,0);} 

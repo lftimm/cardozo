@@ -24,7 +24,7 @@ public:
 
 };
 
-using StorageTypes = ::testing::Types<SparseCR,StackCR<kMatrixSize, kMatrixSize>>;
+using StorageTypes = ::testing::Types<DenseCR,SparseCR,StackCR<kMatrixSize, kMatrixSize>>;
 TYPED_TEST_SUITE(MatrixTest, StorageTypes);
 
 TYPED_TEST(MatrixTest, CONST_ACCESS_OPERATOR) {
@@ -61,6 +61,94 @@ TYPED_TEST(MatrixTest, REF_ACCESS_OPERATOR) {
     EXPECT_EQ(this->mt(pos, pos), val);
 }
 
+TYPED_TEST(MatrixTest, MATRIX_ELEMENT_SUM)
+{
+    const Matrix<TypeParam> op = this->kmt + this->kmt;
+    auto expectedValue = [&](int i, int j){return this->kmt(i,j)*2;};
+
+    for(int i = 0; i < this->kmt.getRows(); i++)
+    {
+        for(int j = 0; j < this->kmt.getCols(); j++)
+        {
+            EXPECT_FLOAT_EQ(op(i,j),expectedValue(i,j));
+        }
+    }
+}
+
+TYPED_TEST(MatrixTest, MATRIX_ELEMENT_SUBTRACTION)
+{
+    const Matrix<TypeParam> op = this->kmt - this->kmt;
+    auto expectedValue = [&](int i, int j){return 0.f;};
+
+    for(int i = 0; i < this->kmt.getRows(); i++)
+    {
+        for(int j = 0; j < this->kmt.getCols(); j++)
+        {
+            EXPECT_FLOAT_EQ(op(i,j),expectedValue(i,j));
+        }
+    }
+}
+
+TYPED_TEST(MatrixTest, MATRIX_SCALAR_MULTIPLICATION)
+{
+    const Matrix<TypeParam> op = this->kmt * 2;
+    auto expectedValue = [&](int i, int j){return this->kmt(i,j)*2;};
+
+    for(int i = 0; i < this->kmt.getRows(); i++)
+    {
+        for(int j = 0; j < this->kmt.getCols(); j++)
+        {
+            EXPECT_FLOAT_EQ(op(i,j),expectedValue(i,j));
+        }
+    }
+}
+
+TYPED_TEST(MatrixTest, MATRIX_SCALAR_DIVISION)
+{
+    const Matrix<TypeParam> op = this->kmt / 2;
+    auto expectedValue = [&](int i, int j){return this->kmt(i,j)/2;};
+
+    for(int i = 0; i < this->kmt.getRows(); i++)
+    {
+        for(int j = 0; j < this->kmt.getCols(); j++)
+        {
+            EXPECT_FLOAT_EQ(op(i,j),expectedValue(i,j));
+        }
+    }
+}
+
+TYPED_TEST(MatrixTest, MATRIX_SUM_SUBTRACT_CANCEL)
+{
+    const Matrix<TypeParam> op = this->kmt;
+    const Matrix<TypeParam> invOp = -this->kmt;
+
+    auto expectedValue = [&](int i, int j){return 0.f;};
+    auto invertOperation = [&](int i, int j){return op(i,j)+invOp(i,j);};
+
+    for(int i = 0; i < this->kmt.getRows(); i++)
+    {
+        for(int j = 0; j < this->kmt.getCols(); j++)
+        {
+            EXPECT_FLOAT_EQ(invertOperation(i,j), expectedValue(i,j));
+        }
+    }
+}
+
+TYPED_TEST(MatrixTest, MATRIX_SCALAR_PRODUCT_DIVISION_CANCEL)
+{
+    const Matrix<TypeParam> op = this->kmt*2;
+
+    auto expectedValue = [&](int i, int j){return this->kmt(i,j);};
+    auto invertOperation = [&](int i, int j){return op(i,j)*0.5f;};
+
+    for(int i = 0; i < this->kmt.getRows(); i++)
+    {
+        for(int j = 0; j < this->kmt.getCols(); j++)
+        {
+            EXPECT_FLOAT_EQ(invertOperation(i,j), expectedValue(i,j));
+        }
+    }
+}
 
 
 TEST(MatrixTest, CAN_READ_FROM_FILE) {
