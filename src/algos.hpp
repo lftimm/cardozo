@@ -1,13 +1,14 @@
 #pragma once
 #include <stdexcept>
 
+#include "cardozo.h"
 #include "vector.h"
 #include "matrix.h"
 
 namespace cardozo::algos 
 {
     template<typename S>
-    Vector conjugateGradient(Vector x, Matrix<S>& A, Vector& B, float eps) {
+    Vector conjugateGradient(Vector x, const Matrix<S>& A, const Vector& B, float eps) {
 
         const int max_iteration_limit{2*A.getRows()};
         Vector res = multiply(A,x) - B;
@@ -30,4 +31,21 @@ namespace cardozo::algos
     
         throw std::runtime_error("Could not converge solver");
     }
+
+
+    inline Matrix<DenseCR> transpose(const Matrix<DenseCR>& m)
+    {
+        Matrix<DenseCR> ret{m.getRows(),m.getCols()};
+
+        for(int i = 0; i < m.getRows(); i++)
+        {
+            for(int j = 0; j < m.getCols(); j++)
+            {
+                ret(i,j) = m(j,i);
+            }
+        }
+
+        return ret;
+    }
+
 }

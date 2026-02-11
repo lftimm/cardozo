@@ -1,8 +1,14 @@
+#include "gtest/gtest.h"
 #include <gtest/gtest.h>
 
 #include <cardozo.h>
 #include <stdexcept>
 using namespace cardozo;
+
+#define SKIP_SPARSEMT() \
+    if (std::is_same_v<TypeParam, SparseCR>) { \
+        GTEST_SKIP() << "SparseCR is readonly"; \
+    } \
 
 const std::string filePath{"../../tests/matrix_samples/gr_900_900_crg.mm"};
 constexpr int kMatrixSize{900};
@@ -49,9 +55,7 @@ TYPED_TEST(MatrixTest, CALLING_AT_OOB_BRINGS_EXCEPTION) {
 
 TYPED_TEST(MatrixTest, REF_ACCESS_OPERATOR) {
 
-    if (std::is_same_v<TypeParam, SparseCR>) {
-        GTEST_SKIP() << "SparseCR is readonly";
-    }
+    SKIP_SPARSEMT();
 
     float val = 300;
     int pos = kMatrixSize/2;
@@ -150,6 +154,18 @@ TYPED_TEST(MatrixTest, MATRIX_SCALAR_PRODUCT_DIVISION_CANCEL)
     }
 }
 
+TEST(MatrixTest, TRANSPOSE_DENSE_EQ) 
+{
+    Matrix transposed = algos::transpose(ref);
+
+    for(int i = 0; i < (ref).getRows(); i++) 
+    { 
+        for(int j = 0; j < (ref).getCols(); j++) 
+        { 
+          EXPECT_FLOAT_EQ(transposed(i,j),ref(j,i)) << "Mismatch at index " << "(" << i << ", " << j << ")\n"; 
+        } 
+    } 
+}
 
 TEST(MatrixTest, CAN_READ_FROM_FILE) {
     ASSERT_EQ(ref.getCols(), kMatrixSize) << "Matrix column number: " << ref.getCols() << "\n";

@@ -19,7 +19,7 @@ namespace cardozo
         public:
 
             explicit SparseCR(int) = delete;
-            SparseCR(int,int) = delete;
+            SparseCR(int,int) { throw std::logic_error("SparseCR Shouldn't be modified."); }
 
             SparseCR(const std::initializer_list<std::initializer_list<float>>&);
             SparseCR(const DenseCR& m);
