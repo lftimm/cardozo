@@ -22,15 +22,15 @@ namespace cardozo
         
         Matrix(int rows,int cols) : mGuts(rows, cols) {}
         Matrix(const Storage& s ) : mGuts(s) {}
-        Matrix(const std::initializer_list<std::initializer_list<float>>& m) : mGuts(m) {}
+        Matrix(const std::initializer_list<std::initializer_list<double>>& m) : mGuts(m) {}
 
         template<typename S>
         Matrix(const Matrix<S>& s) : mGuts(s.mGuts) {}
 
-        float at(int i, int j) const { return mGuts.at(i,j); }
+        double at(int i, int j) const { return mGuts.at(i,j); }
 
-        float operator()(int i, int j) const { return mGuts(i,j); }
-        float& operator()(int i, int j) { return mGuts(i,j); }
+        double operator()(int i, int j) const { return mGuts(i,j); }
+        double& operator()(int i, int j) { return mGuts(i,j); }
 
         template<typename S>
         friend std::ostream& operator<<(std::ostream& out, const Matrix<S>& m);

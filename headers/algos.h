@@ -9,7 +9,7 @@ namespace cardozo::algos
     Matrix<DenseCR> transpose(const Matrix<DenseCR>& m);
 
     template<typename S>
-    Vector conjugateGradient(Vector x, const Matrix<S>& A, const Vector& B, float eps=1e-5) {
+    Vector conjugateGradient(Vector x, const Matrix<S>& A, const Vector& B, double eps=1e-5) {
 
         const int max_iteration_limit{2*A.getRows()};
         Vector res = multiply(A,x) - B;
@@ -21,12 +21,12 @@ namespace cardozo::algos
                 return x;
     
             Vector D = multiply(A,delta);
-            float beta = dot(res,delta) * (-1/dot(delta,D));
+            double beta = dot(res,delta) * (-1/dot(delta,D));
             x += delta * beta;
             
     
             res = multiply(A,x) - B;
-            float chi = dot(res,D) * (1/dot(delta,D));
+            double chi = dot(res,D) * (1/dot(delta,D));
             delta = delta*chi - res;
         }
     

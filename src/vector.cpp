@@ -27,7 +27,7 @@ namespace cardozo
         return *this;
     }
 
-    Vector& Vector::operator*=(float s) {
+    Vector& Vector::operator*=(double s) {
         for(int i = 0; i < getLength(); i++)  {
             mGuts(i,0) *= s;
         }
@@ -35,7 +35,7 @@ namespace cardozo
         return *this;
     }
     
-    Vector& Vector::operator/=(float s) {
+    Vector& Vector::operator/=(double s) {
         for(int i = 0; i < getLength(); i++)  {
             mGuts(i,0) *= 1/s;
         }
@@ -86,7 +86,7 @@ namespace cardozo
         return r;
     }
 
-    Vector operator*(const Vector& a, float s) {
+    Vector operator*(const Vector& a, double s) {
         Vector r{a.getLength()};
 
         for(int i = 0; i < a.getLength(); i++)
@@ -95,14 +95,14 @@ namespace cardozo
         return r;
     }
 
-    Vector operator*(float s, const Vector& a) { return a * s; }
-    Vector operator/(const Vector& a, float s) { return a * (1/s); }
+    Vector operator*(double s, const Vector& a) { return a * s; }
+    Vector operator/(const Vector& a, double s) { return a * (1/s); }
 
 
-    float dot(const Vector& a, const Vector& b) {
+    double dot(const Vector& a, const Vector& b) {
         assert(a.getLength() == b.getLength() && "Must be of equal size");
 
-        float acc{};
+        double acc{};
         for(int i = 0; i < a.getLength(); i++)  {
             acc += a(i) * b(i);
         }
@@ -110,8 +110,8 @@ namespace cardozo
         return acc;
     }
 
-    float magnitude(const Vector& v) {
-        float acc{};
+    double magnitude(const Vector& v) {
+        double acc{};
         for(int i = 0; i < v.getLength(); i++)  {
             acc += v(i)*v(i);
         }
@@ -119,7 +119,7 @@ namespace cardozo
     }
 
     Vector normalize(const Vector& v) {
-        float mag = magnitude(v);
+        double mag = magnitude(v);
         Vector r{v.getLength()};
         for(int i = 0; i < v.getLength(); i++) {
             r(i) = v(i) / mag;

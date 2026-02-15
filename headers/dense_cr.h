@@ -7,7 +7,7 @@ namespace cardozo
 {
     class DenseCR {
     private:
-        std::unique_ptr<float[]> mInternal;
+        std::unique_ptr<double[]> mInternal;
         int mRows;
         int mCols;
         int mSize;
@@ -16,11 +16,11 @@ namespace cardozo
         int getRows() const { return mRows; }
         int getCols() const { return mCols; }
         int getSize() const { return mSize; }
-        const float* getInternal() const { return mInternal.get(); }
+        const double* getInternal() const { return mInternal.get(); }
 
         DenseCR(int,int);
         explicit DenseCR(int);
-        DenseCR(const std::initializer_list<std::initializer_list<float>>&);
+        DenseCR(const std::initializer_list<std::initializer_list<double>>&);
 
 
         DenseCR(const DenseCR&);
@@ -31,9 +31,9 @@ namespace cardozo
 
         ~DenseCR() = default;
 
-        float at(int,int) const;
-        float& operator()(int i, int j);
-        float operator()(int i, int j) const;
+        double at(int,int) const;
+        double& operator()(int i, int j);
+        double operator()(int i, int j) const;
         
     };
 }

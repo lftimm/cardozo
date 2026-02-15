@@ -6,6 +6,7 @@
 
 #include "mt_mdata.h"
 #include "matrix.h"
+#include "vector.h"
 
 namespace {
     using cardozo::MatrixMetadata;
@@ -72,7 +73,7 @@ namespace cardozo::utils {
             std::stringstream lineStream{s};
             int i{};
             int j{};
-            float value{};
+            double value{};
 
             if(lineStream >> i >> j >> value) {
                 i--; j--;
@@ -90,5 +91,15 @@ namespace cardozo::utils {
         }
 
         return m;
+    }
+
+    void to_csv_fie(const Vector m, const std::string& fileName) {
+        std::ofstream file;
+        file.open(fileName);
+
+        for (int i = 0; i < m.getLength(); i++)
+            file << m(i) << ";";
+                
+        file.close();
     }
 }

@@ -19,17 +19,17 @@ namespace cardozo
         Vector& operator=(Vector&&) = default;
 
 
-        const float* getData() const { return mGuts.getInternal();};
+        const double* getData() const { return mGuts.getInternal();};
 
-        float at(int l) { return mGuts.at(l,0); }
+        double at(int l) { return mGuts.at(l,0); }
 
-        float& operator()(int i) { return mGuts(i,0);} 
-        float operator()(int i) const { return mGuts(i,0);} 
+        double& operator()(int i) { return mGuts(i,0);} 
+        double operator()(int i) const { return mGuts(i,0);} 
 
         Vector& operator+=(const Vector& b);
         Vector& operator-=(const Vector& b);
-        Vector& operator*=(float s);
-        Vector& operator/=(float s);
+        Vector& operator*=(double s);
+        Vector& operator/=(double s);
 
         friend std::ostream& operator<<(std::ostream&, const Vector&);
     };
@@ -37,16 +37,16 @@ namespace cardozo
     Vector operator+(const Vector& a, const Vector& b);
     Vector operator-(const Vector& a, const Vector& b);
 
-    Vector operator*(const Vector& a, float s);
-    Vector operator*(float s, const Vector& a);
+    Vector operator*(const Vector& a, double s);
+    Vector operator*(double s, const Vector& a);
 
-    Vector operator/(const Vector& a, float s);
+    Vector operator/(const Vector& a, double s);
 
 
-    float dot(const Vector& a, const Vector& b);
+    double dot(const Vector& a, const Vector& b);
 
     Vector project(const Vector& u, const Vector& a);
 
-    float magnitude(const Vector& v);
+    double magnitude(const Vector& v);
     Vector normalize(const Vector& v);
 }

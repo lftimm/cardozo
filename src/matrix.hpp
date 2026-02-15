@@ -53,7 +53,7 @@ namespace cardozo
 
 
     template<typename S>
-    Matrix<S> operator*(const Matrix<S>& m, float s) {
+    Matrix<S> operator*(const Matrix<S>& m, double s) {
         assert(
             m.getRows() == m.getRows() && 
             m.getCols() == m.getCols() &&
@@ -80,10 +80,10 @@ namespace cardozo
     Matrix<S> operator+(const Matrix<S>& m) { return m; }
 
     template<typename S>
-    Matrix<S> operator*(float s , const Matrix<S>& m) { return m*s; }
+    Matrix<S> operator*(double s , const Matrix<S>& m) { return m*s; }
 
     template<typename S>
-    Matrix<S> operator/(const Matrix<S>& m, float s) { return m*(1/s);}
+    Matrix<S> operator/(const Matrix<S>& m, double s) { return m*(1/s);}
 
     template<typename S>
     Vector multiply(const Matrix<S>& a, const Vector& b) {
@@ -104,7 +104,7 @@ namespace cardozo
     
         Vector res{rows};
         for (int i = 0 ; i < rows ; i++) {
-            float acc = 0;
+            double acc = 0;
             for (int j = 0 ; j < cols ; j++) {
                 acc += a(i,j) * b(j);
             }
@@ -118,7 +118,7 @@ namespace cardozo
     inline Vector multiply(const Matrix<SparseCR>& a, const Vector& b) {
         const SparseCR& storage = a.getStorage();
 
-        const std::vector<float>& data = storage.getData();
+        const std::vector<double>& data = storage.getData();
         const std::vector<int>& colIdx = storage.getColIdx();
         const std::vector<int>& rowPtr = storage.getRowPtr();
 

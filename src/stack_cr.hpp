@@ -7,7 +7,7 @@ namespace cardozo
 {
 
     template<std::size_t i, std::size_t j>
-    StackCR<i,j>::StackCR(const std::initializer_list<std::initializer_list<float>>& m):
+    StackCR<i,j>::StackCR(const std::initializer_list<std::initializer_list<double>>& m):
         mInternal(),
         mRows(static_cast<int>(i)),
         mCols(static_cast<int>(j)),

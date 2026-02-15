@@ -13,7 +13,7 @@ namespace cardozo
     template<std::size_t i, std::size_t j>
     class StackCR {
     private:
-        std::array<float, i*j> mInternal;
+        std::array<double, i*j> mInternal;
         int mRows;
         int mCols;
         int mSize;
@@ -22,17 +22,17 @@ namespace cardozo
         int getRows() const { return mRows; }
         int getCols() const { return mCols; }
         int getSize() const { return mSize; }
-        const std::array<float, i*j>& getInternal() { return mInternal; }
+        const std::array<double, i*j>& getInternal() { return mInternal; }
 
-        StackCR(const std::initializer_list<std::initializer_list<float>>&);
+        StackCR(const std::initializer_list<std::initializer_list<double>>&);
         StackCR(const DenseCR&);
 
         StackCR(int,int) = delete;
         explicit StackCR(int) = delete;
 
-        float at(int a,int b) const { return mInternal.at(a*mCols+b); }
-        float& operator()(int a, int b) { return mInternal[a*mCols+b]; }
-        float operator()(int a, int b) const { return mInternal[a*mCols+b]; }
+        double at(int a,int b) const { return mInternal.at(a*mCols+b); }
+        double& operator()(int a, int b) { return mInternal[a*mCols+b]; }
+        double operator()(int a, int b) const { return mInternal[a*mCols+b]; }
 
     };
 

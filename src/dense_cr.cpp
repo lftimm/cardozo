@@ -6,7 +6,7 @@
 namespace cardozo
 {
     DenseCR::DenseCR(int rows, int cols) :
-        mInternal(std::make_unique<float[]>(rows*cols)),
+        mInternal(std::make_unique<double[]>(rows*cols)),
         mRows(rows),
         mCols(cols),
         mSize(rows*cols) {
@@ -14,7 +14,7 @@ namespace cardozo
     }
 
     DenseCR::DenseCR(int length) :
-        mInternal(std::make_unique<float[]>(length)),
+        mInternal(std::make_unique<double[]>(length)),
         mRows(length),
         mCols(1),
         mSize(length) {
@@ -22,7 +22,7 @@ namespace cardozo
     }
 
     DenseCR::DenseCR(const DenseCR& c) :
-        mInternal(std::make_unique<float[]>(c.mSize)),
+        mInternal(std::make_unique<double[]>(c.mSize)),
         mRows(c.mRows),
         mCols(c.mCols),
         mSize(c.mSize) {
@@ -45,8 +45,8 @@ namespace cardozo
             o.mSize = 0;
     }
 
-    DenseCR::DenseCR(const std::initializer_list<std::initializer_list<float>>& v) :
-        mInternal(std::make_unique<float[]>(v.size() == 0 ? 0 : v.size() * v.begin()->size())),
+    DenseCR::DenseCR(const std::initializer_list<std::initializer_list<double>>& v) :
+        mInternal(std::make_unique<double[]>(v.size() == 0 ? 0 : v.size() * v.begin()->size())),
         mRows(v.size()), 
         mCols(v.size() == 0 ? 0 : v.begin()->size()),
         mSize(mRows*mCols) {
@@ -64,7 +64,7 @@ namespace cardozo
         if(this == &c)
             return *this;
 
-        mInternal = std::make_unique<float[]>(c.mSize);
+        mInternal = std::make_unique<double[]>(c.mSize);
 
         for(int i = 0; i < mRows; i++) {
             for(int j = 0; j < mCols; j++) {
@@ -97,15 +97,15 @@ namespace cardozo
         return *this;
     }
 
-    float& DenseCR::operator()(int i, int j) {
+    double& DenseCR::operator()(int i, int j) {
         return mInternal[i*mCols+j]; 
     }
 
-    float DenseCR::operator()(int i, int j) const {
+    double DenseCR::operator()(int i, int j) const {
         return mInternal[i*mCols+j]; 
     }
 
-    float DenseCR::at(int i, int j) const {
+    double DenseCR::at(int i, int j) const {
         if(i < 0 || j < 0 || i >= mRows || j >= mCols)
             throw std::out_of_range("Tried to read out of bounds");
 

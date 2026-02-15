@@ -9,7 +9,7 @@
 namespace cardozo 
 {
 
-    float SparseCR::at(int i, int j) const {
+    double SparseCR::at(int i, int j) const {
         if(i < 0 || j < 0 || i >= mRows || j >= mCols)
             throw std::out_of_range("Tried accessing matrix out of bounds");
 
@@ -52,7 +52,7 @@ namespace cardozo
         } 
     }
 
-    SparseCR::SparseCR(const std::initializer_list<std::initializer_list<float>>& m) :
+    SparseCR::SparseCR(const std::initializer_list<std::initializer_list<double>>& m) :
         mRows(m.size()),
         mCols(m.size() == 0 ? 0 : m.begin()->size()),
         mSize(mCols*mRows) {
@@ -87,7 +87,7 @@ namespace cardozo
     }
 
 
-    float SparseCR::operator()(int i, int j) const {
+    double SparseCR::operator()(int i, int j) const {
         const int row_start = mRowPtr[i];
         const int row_end = mRowPtr[i+1];
 
