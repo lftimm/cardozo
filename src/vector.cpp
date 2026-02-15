@@ -127,4 +127,8 @@ namespace cardozo
 
         return r;
     }
+
+    Vector project(const Vector& u, const Vector& a) {
+        return dot(u,a)/dot(u,u) * u;
+    }
 }

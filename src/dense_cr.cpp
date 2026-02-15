@@ -46,7 +46,7 @@ namespace cardozo
     }
 
     DenseCR::DenseCR(const std::initializer_list<std::initializer_list<float>>& v) :
-        mInternal(std::make_unique<float[]>(v.size() == 0 ? 0 : v.begin()->size())),
+        mInternal(std::make_unique<float[]>(v.size() == 0 ? 0 : v.size() * v.begin()->size())),
         mRows(v.size()), 
         mCols(v.size() == 0 ? 0 : v.begin()->size()),
         mSize(mRows*mCols) {

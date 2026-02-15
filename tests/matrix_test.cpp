@@ -63,6 +63,7 @@ TYPED_TEST(MatrixTest, REF_ACCESS_OPERATOR) {
     this->mt(pos,pos) = val;
 
     EXPECT_EQ(this->mt(pos, pos), val);
+
 }
 
 TYPED_TEST(MatrixTest, MATRIX_ELEMENT_SUM)
@@ -152,6 +153,12 @@ TYPED_TEST(MatrixTest, MATRIX_SCALAR_PRODUCT_DIVISION_CANCEL)
             EXPECT_FLOAT_EQ(invertOperation(i,j), expectedValue(i,j));
         }
     }
+}
+
+TEST(MatrixTest, STACK_ZERO_INITIALIZATION) {
+
+    Matrix6x6 mt{};
+
 }
 
 TEST(MatrixTest, TRANSPOSE_DENSE_EQ) 

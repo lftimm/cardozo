@@ -45,6 +45,8 @@ namespace cardozo
 
     float dot(const Vector& a, const Vector& b);
 
+    Vector project(const Vector& u, const Vector& a);
+
     float magnitude(const Vector& v);
     Vector normalize(const Vector& v);
 }

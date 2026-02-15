@@ -24,6 +24,7 @@ add_library(
     src/sparse_cr.cpp
     src/vector.cpp
     src/utils.cpp
+    src/algos.cpp
     "${CMAKE_CURRENT_BINARY_DIR}/cardozo.h"
 )
 
