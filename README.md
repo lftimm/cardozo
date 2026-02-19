@@ -60,25 +60,26 @@ int main() {
     std::cout << v+x << "\n"; // Sum of vectors 
 ```
 ### Sources
-https://en.wikipedia.org/wiki/Sparse_matrix
+[Wikipedia, Sparse Matrix](https://en.wikipedia.org/wiki/Sparse_matrix)
 
-https://www.youtube.com/watch?v=a2LXVFmGH_Q
+[Compressed Sparse Row (CSR) | Sparse Matrices | with implementation in C ](https://www.youtube.com/watch?v=a2LXVFmGH_Q)
 
-https://en.wikipedia.org/wiki/Conjugate_gradient_method
+[Wikipedia, Conjugate Gradient Method](https://en.wikipedia.org/wiki/Conjugate_gradient_method)
 
-https://indrag49.github.io/Numerical-Optimization/conjugate-gradient-methods-1.html#linear-conjugate-gradient-algorithm
+[Introduction to Mathematical Optimization
+with Python, #5.2 Linear Conjugate Gradient Algorithm](https://indrag49.github.io/Numerical-Optimization/conjugate-gradient-methods-1.html#linear-conjugate-gradient-algorithm)
 
-https://youtube.com/playlist?list=PLAVG7GMBpcYArR9QLXm3DVvqYhRdF6Tsj&si=O8atsIv8dxUAABEO
+[Numerical Linear Algebra](https://youtube.com/playlist?list=PLAVG7GMBpcYArR9QLXm3DVvqYhRdF6Tsj&si=O8atsIv8dxUAABEO)
 
-https://google.github.io/googletest/primer.html
+[GoogleTest Primer](https://google.github.io/googletest/primer.html)
 
-https://math.nyu.edu/~greengar/painless-conjugate-gradient.pdf
+[Painless Conjugate Gradient](https://math.nyu.edu/~greengar/painless-conjugate-gradient.pdf)
 
-https://en.wikipedia.org/wiki/Cholesky_decomposition
+[Wikipedia, Cholesky Decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition)
 
-https://en.wikipedia.org/wiki/LU_decomposition
+[Wikipedia, LU Decomposition](https://en.wikipedia.org/wiki/LU_decomposition)
 
-https://www.geeksforgeeks.org/dsa/doolittle-algorithm-lu-decomposition/
+[Doolittle Algorithm | LU Decomposition](https://www.geeksforgeeks.org/dsa/doolittle-algorithm-lu-decomposition/)
 
 
 ### Why cardozo?
