@@ -1,7 +1,7 @@
 # cardozo
 ---
 
-A simple to use and flexbile math for graphics, science and engineering simulation. 
+A simple to use and flexibile math for graphics, science and engineering simulation. 
 This library is going to be used for my Bachelor's Thesis [Multicore and GPU Accelerated FEM].
 
 ## Installation
@@ -15,8 +15,8 @@ sudo make install
 ## Notes/Commentary
 * Unless stated otherwise suppose all storage backends are heap allocated.
 * I focused mainly on decoupling storage from implementation and numerical methods, focusing on const correctness and prefering non-member functions for most cases.
-* The templated strategy pattern should not bring performance overheads, although i have not tested, worth compiling with -O3 and seeing.
-* When building cardozo bundles all headers in a single .h file using a custom python script that does a topoligical ordering of all header fieles and joins them all. That's why the project's structure does not mirror the final file.
+* The templated strategy pattern should not bring performance overheads, although i have not benchmarked yet.
+* When building cardozo bundles all headers in a single .h file using a custom python script that does a topological ordering of all header fields and joins them all. That's why the project's structure does not mirror the final file.
 
 ## Examples
 
