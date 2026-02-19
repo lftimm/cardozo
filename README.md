@@ -1,5 +1,4 @@
 # cardozo
----
 
 A simple to use and flexibile math for graphics, science and engineering simulation. 
 This library is going to be used for my Bachelor's Thesis [Multicore and GPU Accelerated FEM].
