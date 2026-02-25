@@ -5,7 +5,7 @@
 using namespace cardozo;
 
 constexpr int rnd_seed{802};
-const std::string filePath{"../../tests/matrix_samples/gr_900_900_crg.mm"};
+const std::string filePath{"../../tests/data/gr_900_900_crg.mm"};
 
 constexpr double tolerance{1.5e-2};
 

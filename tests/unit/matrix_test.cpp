@@ -10,7 +10,7 @@ using namespace cardozo;
         GTEST_SKIP() << "SparseCR is readonly"; \
     } \
 
-const std::string filePath{"../../tests/matrix_samples/gr_900_900_crg.mm"};
+const std::string filePath{"../../tests/data/gr_900_900_crg.mm"};
 constexpr int kMatrixSize{900};
 
 static const Matrix<DenseCR> ref = utils::from_mmt_file(filePath);

@@ -5,7 +5,6 @@ project(tests)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -16,10 +15,12 @@ FetchContent_MakeAvailable(googletest)
 
 add_executable(
     ${PROJECT_NAME}
-    vector_test.cpp
-    matrix_test.cpp
-    algos_test.cpp
+    unit/vector_test.cpp
+    unit/matrix_test.cpp
+    unit/algos_test.cpp
+    integration/fem.cpp
 )
+
 
 target_link_libraries(
     ${PROJECT_NAME}
