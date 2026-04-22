@@ -157,6 +157,14 @@ TYPED_TEST(MatrixTest, MATRIX_SCALAR_PRODUCT_DIVISION_CANCEL)
 
 TEST(MatrixTest, STACK_ZERO_INITIALIZATION) {
     Matrix6x6 mt{};
+
+    for(int i = 0; i < mt.getRows(); i++)
+    {
+        for(int j = 0; j < mt.getCols(); j++)
+        {
+            EXPECT_EQ(mt(i,j), 0.f);
+        }
+    }
 }
 
 TEST(MatrixTest, TRANSPOSE_DENSE_EQ) 

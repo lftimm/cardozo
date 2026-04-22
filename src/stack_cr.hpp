@@ -15,7 +15,7 @@ namespace cardozo
         mCols(static_cast<int>(j)),
         mSize(mRows*mCols) {
 
-        assert(m.size() == i && m.begin()->size() == j && "Matrices must match size");
+        assert(m.size() == 0 || (m.size() == i && m.begin()->size() == j && "Matrices must match size"));
 
         std::size_t a{};
         std::size_t b{};
@@ -38,7 +38,7 @@ namespace cardozo
         mCols(static_cast<int>(j)),
         mSize(mRows*mCols) {
 
-        std::cerr << "Hi from the StackCR constructor\n";
+
         assert(mRows == other.getRows() && mCols == other.getCols() && "Matrices must match size." );
 
         for(int r = 0; r < mRows; r++)
