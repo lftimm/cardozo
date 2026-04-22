@@ -18,7 +18,7 @@ add_executable(
     unit/vector_test.cpp
     unit/matrix_test.cpp
     unit/algos_test.cpp
-    integration/fem.cpp
+    integration/oneD_bar.cpp
 )
 
 

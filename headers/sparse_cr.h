@@ -11,15 +11,19 @@ namespace cardozo
             std::vector<double> mData;
             std::vector<int> mColIdx;
             std::vector<int> mRowPtr;
+            std::vector<std::tuple<int,int,double>> mPending;
             
             int mRows;
             int mCols;
             int mSize;
 
+            bool mCompressed;
+
         public:
 
             explicit SparseCR(int) = delete;
-            SparseCR(int,int) { throw std::logic_error("SparseCR Shouldn't be modified."); }
+
+            SparseCR(int,int);
 
             SparseCR(const std::initializer_list<std::initializer_list<double>>&);
             SparseCR(const DenseCR& m);
@@ -32,7 +36,7 @@ namespace cardozo
             const std::vector<int>& getColIdx() const { return mColIdx; }
             const std::vector<int>& getRowPtr() const { return mRowPtr; }
 
-            double& operator()(int,int) { throw std::logic_error("SparseCR Shouldn't be modified."); };
+            double& operator()(int,int);
             double operator()(int,int) const;
             double at(int,int) const;
             

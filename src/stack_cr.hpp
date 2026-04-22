@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #include "stack_cr.h"
 #include "dense_cr.h"
 
@@ -36,6 +38,7 @@ namespace cardozo
         mCols(static_cast<int>(j)),
         mSize(mRows*mCols) {
 
+        std::cerr << "Hi from the StackCR constructor\n";
         assert(mRows == other.getRows() && mCols == other.getCols() && "Matrices must match size." );
 
         for(int r = 0; r < mRows; r++)

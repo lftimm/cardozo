@@ -19,8 +19,8 @@ namespace cardozo
     SparseCR::SparseCR(const DenseCR& m) :
         mRows(m.getRows()),
         mCols(m.getCols()),
-        mSize(m.getSize())
-    {
+        mSize(m.getSize()) { 
+
         int nz_e{};
         for(int i = 0; i < m.getRows(); i++)
         {
@@ -30,7 +30,6 @@ namespace cardozo
                     nz_e++;
             }
         }
-
 
         mData.reserve(nz_e);
         mColIdx.reserve(nz_e);

@@ -33,7 +33,6 @@ namespace cardozo
         double at(int a,int b) const { return mInternal.at(a*mCols+b); }
         double& operator()(int a, int b) { return mInternal[a*mCols+b]; }
         double operator()(int a, int b) const { return mInternal[a*mCols+b]; }
-
     };
 
 }
