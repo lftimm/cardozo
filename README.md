@@ -1,10 +1,10 @@
 # cardozo
 
 A simple to use and flexibile math library for graphics, science and engineering simulation. 
-This library is going to be used for my Bachelor's Thesis [Multicore and GPU Accelerated FEM].
 
 ## Installation
 CMake was used so it should be straight-forward.
+Be sure to have python installed, if it breaks take a look on which python binary is being used in CMakeLists.txt
 ```sh
 git clone https://github.com/lftimm/cardozo
 cd cardozo/build
@@ -59,6 +59,8 @@ int main() {
     std::cout << v+x << "\n"; // Sum of vectors 
 ```
 ### Sources
+[O Método de Elementos Finitos aplicado à Mecânica dos Sólidos, Paulo de Tarso R. Mendonça](https://www.editoraorsamaggiore.com.br/o-metodo-de-elementos-finitos-aplic)
+
 [Wikipedia, Sparse Matrix](https://en.wikipedia.org/wiki/Sparse_matrix)
 
 [Compressed Sparse Row (CSR) | Sparse Matrices | with implementation in C ](https://www.youtube.com/watch?v=a2LXVFmGH_Q)
